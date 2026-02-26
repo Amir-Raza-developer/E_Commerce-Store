@@ -1,0 +1,55 @@
+<footer class="footer py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="footer-title"><i class="fas fa-shopping-bag me-2"></i>ShopHub</h5>
+                <p class="footer-text">Your one-stop destination for quality products at amazing prices.</p>
+                <div class="d-flex gap-3 mt-3">
+                    <a href="#" class="social-link"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="footer-title">Quick Links</h6>
+                <ul class="footer-links list-unstyled">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'shop' %}">Shop</a></li>
+                    <li><a href="{% url 'cart' %}">Cart</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}">My Account</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="footer-title">Categories</h6>
+                <ul class="footer-links list-unstyled">
+                    {% for cat in categories %}
+                    <li><a href="{% url 'shop' %}?category={{ cat.id }}">{{ cat.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="footer-title">Contact Info</h6>
+                <ul class="list-unstyled footer-text">
+                    <li class="mb-1"><i class="fas fa-map-marker-alt me-2 text-warning"></i>123 Shopping Street, NY 10001</li>
+                    <li class="mb-1"><i class="fas fa-phone me-2 text-warning"></i>(555) 123-4567</li>
+                    <li><i class="fas fa-envelope me-2 text-warning"></i>info@shophub.com</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="footer-divider">
+        <div class="row align-items-center">
+            <div class="col-md-6"><p class="footer-copyright mb-0">&copy; 2026 ShopHub. All rights reserved.</p></div>
+            <div class="col-md-6 text-end">
+                <i class="fab fa-cc-visa fa-2x me-2"></i>
+                <i class="fab fa-cc-mastercard fa-2x me-2"></i>
+                <i class="fab fa-cc-paypal fa-2x"></i>
+            </div>
+        </div>
+    </div>
+</footer>
