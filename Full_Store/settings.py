@@ -1,16 +1,12 @@
 from pathlib import Path
-import os
-import dj_database_url
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-a$&p^up8xwin6n+=%d2n0x!o@u$co-3042^a4%#w@p!$$b!ram'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-SECRET_KEY = os.environ.get('SECRET_KEY', 'your-existing-key')
 
 INSTALLED_APPS = [
      'jazzmin',
@@ -28,7 +24,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -57,10 +52,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Full_Store.wsgi.application'
 
-DATABASES = {                
-     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 AUTH_USER_MODEL = 'Administrator.User'
@@ -92,8 +88,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # jazzmin admin =======================
 
 JAZZMIN_SETTINGS = {
